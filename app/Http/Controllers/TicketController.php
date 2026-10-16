@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
-use App\Http\Requests\StoreTicketRequest;
-use App\Http\Requests\UpdateTicketRequest;
+use Illuminate\Http\Request;
 
 class TicketController extends Controller
 {
@@ -13,23 +12,16 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return Ticket::all();
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTicketRequest $request)
+    public function store(Request $request)
     {
-        //
+        $record = new Ticket();
+        $record->fill($request->all())->save();
     }
 
     /**
@@ -37,23 +29,15 @@ class TicketController extends Controller
      */
     public function show(Ticket $ticket)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Ticket $ticket)
-    {
-        //
+        return $ticket;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTicketRequest $request, Ticket $ticket)
+    public function update(Request $request, Ticket $ticket)
     {
-        //
+        $ticket->fill($request->all())->save();
     }
 
     /**
@@ -61,6 +45,6 @@ class TicketController extends Controller
      */
     public function destroy(Ticket $ticket)
     {
-        //
+        $ticket->delete();
     }
 }

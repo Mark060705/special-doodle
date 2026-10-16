@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Trader;
-use App\Http\Requests\StoreTraderRequest;
-use App\Http\Requests\UpdateTraderRequest;
+use Illuminate\Http\Request;
 
 class TraderController extends Controller
 {
@@ -13,23 +12,16 @@ class TraderController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return Trader::all();
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTraderRequest $request)
+    public function store(Request $request)
     {
-        //
+        $record = new Trader();
+        $record->fill($request->all())->save();
     }
 
     /**
@@ -37,23 +29,15 @@ class TraderController extends Controller
      */
     public function show(Trader $trader)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Trader $trader)
-    {
-        //
+        return $trader;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTraderRequest $request, Trader $trader)
+    public function update(Request $request, Trader $trader)
     {
-        //
+        $trader->fill($request->all())->save();
     }
 
     /**
@@ -61,6 +45,6 @@ class TraderController extends Controller
      */
     public function destroy(Trader $trader)
     {
-        //
+        $trader->delete();
     }
 }

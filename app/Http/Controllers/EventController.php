@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use App\Http\Requests\StoreEventRequest;
-use App\Http\Requests\UpdateEventRequest;
+use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
@@ -13,23 +12,16 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return Event::all();
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEventRequest $request)
+    public function store(Request $request)
     {
-        //
+        $record = new Event();
+        $record->fill($request->all())->save();
     }
 
     /**
@@ -37,23 +29,15 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Event $event)
-    {
-        //
+        return $event;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEventRequest $request, Event $event)
+    public function update(Request $request, Event $event)
     {
-        //
+        $event->fill($request->all())->save();
     }
 
     /**
@@ -61,6 +45,6 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $event->delete();
     }
 }
