@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Trader;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,6 +19,22 @@ return new class extends Migration
             $table->string('country');
             $table->timestamps();
         });
+
+        Trader::create([
+            'name' => "Nemtudom LLC",
+            'description' => "Őszintén fogalmam sincs",
+            'country' => "Bhutan"
+        ]);
+        Trader::create([
+            'name' => "Nemtudom2 LLC",
+            'description' => "Őszintén méginkább nincs fogalmam",
+            'country' => "Bhutan"
+        ]);
+        Trader::create([
+            'name' => "Nemtudom3 LLC",
+            'description' => "Őszintén leginkább fogalmam sincs",
+            'country' => "Bhutan"
+        ]);
     }
 
     /**
